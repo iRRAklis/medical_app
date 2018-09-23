@@ -1,0 +1,8 @@
+%li
+	.card.article-card
+		.article-photo.text-center= image_tag article.image.thumb.url, class: "card-img-top" if article.image?
+		.card-body
+			%h5.card-title
+				%strong= article.title
+			%p.card-text= article.body.truncate(100)
+			= link_to "Read More", article_path(article), class: "btn btn-primary"

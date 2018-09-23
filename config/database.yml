@@ -1,0 +1,6 @@
+development:
+  adapter: mysql2
+  username: root
+  password: 
+  database: medical_app4
+  host: localhost

@@ -1,0 +1,40 @@
+.row
+	.col-xs-12
+		= form_for [:admin, @article] do |f|
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Title", class: "col-sm-2 col-form-label"
+				.col-sm-6
+					= f.text_field :title, autofocus: true, class: "form-control"
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Body", class: "col-sm-2 col-form-label"
+				.col-sm-6
+					= f.text_area :body, autocomplete: "off", rows: 5, class: "form-control"
+
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Related Diseases", class: "col-sm-2 col-form-label"
+				.col-sm-4
+					- Disease.all.each do |disease|
+						= check_box_tag "disease_ids[]", disease.id, f.object.diseases.include?(disease)
+						= disease.name
+						%br
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Banner", class: "col-sm-2 col-form-label"
+				.col-sm-4
+					- if @article.image?
+						= image_tag @article.image.thumb.url
+						%div
+							= check_box_tag :remove_image
+							= "Remove image"
+					- else
+						= f.file_field :image
+
+			.actions.form-group.row.text-center
+				= f.submit "Save", id: "save-btn", class: "btn btn-lg"

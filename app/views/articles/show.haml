@@ -1,0 +1,18 @@
+.container-fluid
+
+	= link_to "Back to articles", articles_path, class: "btn btn-md back-btn"
+
+	= image_tag @article.image.url, class: "banner" if @article.image?
+	
+	%h1.text-center= @article.title
+
+	.row
+		.col-xs-1
+		.col-xs-10
+			.jumbotron
+				= @article.body
+		.col-xs-1
+
+	= link_to "Back to articles", articles_path, class: "btn btn-md back-btn"
+
+	

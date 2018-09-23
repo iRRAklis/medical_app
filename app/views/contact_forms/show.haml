@@ -1,0 +1,26 @@
+%h2.text-center= "Contact Form"
+
+- if @success
+	%h3.text-center.info.contact-success= "Your message was successfully sent and we will contact you as soon as possible."
+	%h3.text-center.info= "Thank you."
+
+
+- else
+	.row
+		.col-xs-12
+			= form_tag({ controller: 'contact_forms', action: 'send_contact_form' }) do
+
+				.field.form-group.row
+					.col-sm-2
+					= label_tag "Subject", nil, class: "col-sm-2 col-form-label"
+					.col-sm-4
+						= text_field_tag "subject", nil, class: "form-control"
+
+				.field.form-group.row
+					.col-sm-2
+					= label_tag "Message", nil, class: "col-sm-2 col-form-label"
+					.col-sm-4
+						= text_area_tag "message", nil, size: "24x8", class: "form-control"
+
+				.actions.form-group.row.text-center
+					= submit_tag "Send Message", class: "btn btn-lg"

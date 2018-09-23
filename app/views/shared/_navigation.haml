@@ -1,0 +1,70 @@
+%header.app
+  %nav.navbar.navbar-default
+    .container-fluid
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        - if user_signed_in?
+          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        = link_to "Medical App", root_path, class: "navbar-brand", id: "logo"
+      / Collect the nav links, forms, and other content for toggling
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav#tabs
+          - if user_signed_in?
+            %li
+              = link_to "Profile", user_path(current_user)
+              %span.sr-only (current)
+            %li
+              = link_to "Edit Profile", edit_user_path(current_user)
+            %li
+              = link_to "Edit Email-Password", edit_user_registration_path(current_user)
+            %li
+              = link_to "Articles", articles_path
+            %li
+              = link_to "Contact", contact_path
+          -#
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+                Dropdown
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a{href: "#"} Action
+                %li
+                  %a{href: "#"} Another action
+                %li
+                  %a{href: "#"} Something else here
+                %li.divider{role: "separator"}
+                %li
+                  %a{href: "#"} Separated link
+                %li.divider{role: "separator"}
+                %li
+                  %a{href: "#"} One more separated link
+        -#%form.navbar-form.navbar-left
+          .form-group
+            %input.form-control{placeholder: "Αναζήτηση", type: "text"}/
+          %button.btn.btn-default{type: "submit"} Αναζήτηση
+        %ul.nav.navbar-nav.navbar-right#tabs
+          - if user_signed_in?
+            %li
+              = link_to "Sign out", destroy_user_session_path, method: :delete
+          -#
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+                Dropdown
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a{href: "#"} Action
+                %li
+                  %a{href: "#"} Another action
+                %li
+                  %a{href: "#"} Something else here
+                %li.divider{role: "separator"}
+                %li
+                  %a{href: "#"} Separated link
+      / /.navbar-collapse
+    / /.container-fluid

@@ -1,0 +1,18 @@
+.row
+	.col-xs-12
+		= form_for [:admin, @disease] do |f|
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Name", class: "col-sm-2 col-form-label"
+				.col-sm-6
+					= f.text_field :name, autofocus: true, class: "form-control"
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Inheritance Probability", class: "col-sm-2 col-form-label"
+				.col-xs-4
+					= f.number_field :probability, step: :any, autofocus: true, class: "form-control"
+
+			.actions.form-group.row.text-center
+				= f.submit "Save", id: "save-btn", class: "btn btn-lg"

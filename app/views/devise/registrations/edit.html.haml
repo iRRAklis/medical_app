@@ -1,0 +1,33 @@
+%h2.text-center= "Edit Email-Password"
+
+.row
+  .col-xs-12
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+
+      .field.form-group.row
+        .col-sm-2
+        = f.label :email, class: "col-sm-2 col-form-label"
+        .col-sm-4
+          = f.email_field :email, autofocus: true, class: "form-control"
+
+      .field.form-group.row
+        .col-sm-2
+        = f.label "Current Password", class: "col-sm-2 col-form-label"
+        .col-sm-4
+          = f.password_field :current_password, autocomplete: "off", class: "form-control"
+
+      .field.form-group.row
+        .col-sm-2
+        = f.label "New Password", class: "col-sm-2 col-form-label"
+        .col-sm-4
+          = f.password_field :password, autocomplete: "off", class: "form-control"
+          %i= "(leave it blank unless you want to change your password)"
+
+      .field.form-group.row
+        .col-sm-2
+        = f.label "New Password Confirmation", class: "col-sm-2 col-form-label"
+        .col-sm-4
+          = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
+
+      .actions.form-group.row.text-center
+        = f.submit "Submit Changes", class: "btn btn-lg"

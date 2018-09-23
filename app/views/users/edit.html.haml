@@ -1,0 +1,67 @@
+%h2.text-center= "Edit Profile"
+
+.row
+	.col-xs-12
+		= form_for @user, url: user_path(@user) do |f|
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Full Name", class: "col-sm-2 col-form-label"
+				.col-sm-4
+					= f.text_field :full_name, class: "form-control"
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Gender", class: "col-sm-2 col-form-label"
+				.col-sm-4
+					= f.select(:gender, [["", nil],["Male", "Male"], ["Female", "Female"]], {}, { class: "form-control" })
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "SSN", class: "col-sm-2 col-form-label"
+				.col-sm-4
+					= f.text_field :amka, class: "form-control"
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Father SSN", class: "col-sm-2 col-form-label"
+				.col-sm-4
+					= f.text_field :father_amka, class: "form-control"
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Mother SSN", class: "col-sm-2 col-form-label"
+				.col-sm-4
+					= f.text_field :mother_amka, class: "form-control"
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "My Diseases", class: "col-sm-2 col-form-label"
+				.col-sm-4
+					- Disease.all.each do |disease|
+						.row
+							.col-xs-2
+							.col-xs-8
+								= check_box_tag "disease_ids[]", disease.id, f.object.diseases.include?(disease), class: "form-check-input"
+								= label_tag disease.id, disease.name, class: "form-check-label"
+							.col-xs-2
+
+			.field.form-group.row
+				.col-sm-2
+				= f.label "Avatar", class: "col-sm-2 col-form-label"
+				.col-sm-4
+					- if @user.image?
+						.text-center
+							= image_tag current_user.image.thumb.url, class: "img-circle"
+							= check_box_tag :remove_image
+							= label_tag :remove_image, "Remove image", class: "form-check-label"
+
+						.text-center
+							= f.label "Change image", class: "col-sm-2 col-form-label"
+							.col-sm-4
+								= f.file_field :image, class: "text-center"
+					- else
+						= f.file_field :image
+
+			.actions.form-group.row.text-center
+				= f.submit "Submit changes", class: "btn btn-lg"

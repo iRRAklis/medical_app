@@ -1,0 +1,4 @@
+- if current_admin.present?
+	%h1 Hello admin!
+- else
+	= render partial: 'signin'

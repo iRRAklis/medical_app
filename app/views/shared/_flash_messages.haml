@@ -1,0 +1,16 @@
+.flash-messages
+	%ul
+		- flash.each do |key, value|
+			- klass = key.to_s == "error" ? "error" : "notice"
+			%div{ class: "well #{klass}" }
+				- if value.is_a?(Array)
+					- value.each_with_index do |message, index|
+						%li
+							= message
+							- if index == 0
+								%span.hide-button x
+
+				- else
+					%li
+						= value
+						%span.hide-button x

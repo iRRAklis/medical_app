@@ -1,0 +1,26 @@
+%header.admin
+  %nav.navbar.navbar-default.admin
+    .container-fluid
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        - if current_admin.present?
+          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        = link_to "Medical App CMS", admin_root_path, class: "navbar-brand", id: "logo"
+      / Collect the nav links, forms, and other content for toggling
+      - if current_admin.present?
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav#tabs
+            %li
+              = link_to "Diseases", admin_diseases_path
+            %li
+              = link_to "Articles", admin_articles_path
+              %span.sr-only (current)
+            %li
+              = link_to "Users", admin_users_path
+              %span.sr-only (current)
+          %ul.nav.navbar-nav.navbar-right#tabs
+            %li= link_to "Sign out", destroy_user_session_path, method: :delete

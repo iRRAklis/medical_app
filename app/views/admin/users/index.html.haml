@@ -1,0 +1,19 @@
+%h1{ align: "center" } Users List
+
+%div{ align: "center", class: "col-md-4 col-md-offset-4 center" }
+	= will_paginate
+
+%div{ align: "center", class: "col-md-4 col-md-offset-4 center" }
+	- @users.each do |user|
+		%ul.listing
+			.row
+				.well
+					.text-center.mini= image_tag user.image.thumb.url, class: "img-circle mini" if user.image?
+
+					= link_to admin_user_path(user) do
+						%li
+							%strong= user.full_name
+						%li= user.email
+
+%div{ align: "center", class: "col-md-4 col-md-offset-4 center" }
+	= will_paginate

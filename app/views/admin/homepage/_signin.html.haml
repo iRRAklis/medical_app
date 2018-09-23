@@ -1,0 +1,20 @@
+%h2.text-center= "Sign in to continue"
+
+.row
+  .col-xs-12
+    = form_for(:admin, as: :admin, url: session_path(:admin)) do |f|
+      .field.form-group.row
+        .col-sm-2
+        = f.label :email, class: "col-sm-2 col-form-label"
+        .col-sm-4
+          = f.email_field :email, autofocus: true, class: "form-control"
+
+      .field.form-group.row
+        .col-sm-2
+        = f.label "Password", class: "col-sm-2 col-form-label"
+        .col-sm-4
+          = f.password_field :password, autocomplete: "off", class: "form-control"
+
+
+      .actions.form-group.row.text-center
+        = f.submit "Sign in", class: "btn btn-lg"

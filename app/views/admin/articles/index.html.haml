@@ -1,0 +1,18 @@
+%h2
+	%i{ style: "font-size:20px", class: "fa fa-plus" }
+	= link_to "Create new article", new_admin_article_path
+
+%h1 Articles List
+
+.row
+	.col-xs-6
+		
+		%table.table.table-striped
+			%tbody
+				- @articles.each do |article|
+					%tr
+						%td
+							= link_to article.title, edit_admin_article_path(article)
+						%td
+							= link_to admin_article_path(article), method: :delete, data: { confirm: 'Are you sure?' } do
+								%i{ style: "font-size:20px", class: "fa fa-trash-o" }

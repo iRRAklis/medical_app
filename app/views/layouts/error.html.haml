@@ -1,0 +1,21 @@
+!!! 5
+%html
+  %head
+    %title= MedicalApp
+
+    = csrf_meta_tags
+
+    = favicon_link_tag 'favicon.png', type: 'image/png'
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+    %meta{ name:"viewport", content: "width=device-width" }
+
+
+  %body.app
+    .container
+      = yield
+    = render partial: 'shared/footer'

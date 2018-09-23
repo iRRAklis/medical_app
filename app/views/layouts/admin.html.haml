@@ -1,0 +1,24 @@
+!!! 5
+%html
+  %head
+    %title= MedicalApp
+
+    = csrf_meta_tags
+
+    = favicon_link_tag 'favicon.png', type: 'image/png'
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+    = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+    %meta{ name:"viewport", content: "width=device-width" }
+
+
+  %body.admin
+    = render partial: 'admin/shared/header'
+    .container
+      = render partial: 'shared/flash_messages'
+      = yield
+    = render partial: 'admin/shared/footer'

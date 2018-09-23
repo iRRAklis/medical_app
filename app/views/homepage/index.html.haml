@@ -1,0 +1,21 @@
+.jumbotron
+
+	.text-center
+		%h1= "Welcome to Medical App"
+
+	.text-center
+		%h3= "Here at Medical App you can be informed of health news you might be interested in, as well as your health status based on your history and your relationship with relative persons."
+
+		- if user_signed_in?
+			%h2= "Hello, #{current_user.email}!"
+		- else
+			.container
+				.col-md-3
+					= link_to "Sign up", new_user_registration_path, class: "btn btn-lg", id: "home-reg-btn"
+				.col-md-3
+					-#= render "devise/registrations/new"
+					
+					= link_to "Sign in", new_session_path(resource_name), class: "btn btn-lg", id: "home-log-btn"
+				.col-md-6
+					%h3= "Sign up or sign in via your account"
+

@@ -1,0 +1,46 @@
+%h1= "Χρήστης #{@user.email}"
+
+.row
+	.col-xs-6
+
+		%table.table.table-striped.center
+			%tbody
+				%tr
+					%td Full Name
+					%td= @user.full_name
+				%tr
+					%td SSN
+					%td= @user.amka
+				%tr
+					%td Father Name
+					%td= @user.father.try(:full_name) || "-"
+				%tr
+					%td Mother Name
+					%td= @user.mother.try(:full_name) || "-"
+				%tr
+					%td Gender
+					%td= @user.gender
+				%tr
+					%td Diseases
+					%td
+						- @user.diseases.each do |disease|
+							= disease.name
+							%br
+				%tr
+					%td Probably Inherited Diseases
+					%td
+						- @user.parent_diseases.each do |disease|
+							= "#{disease.probability}% -- #{disease.name}"
+							%br
+
+.row
+	.col-xs-12
+
+		= form_for [:admin, @user] do |f|
+
+			.field.form-group.row
+				.col-xs-6
+					= f.email_field :email, autofocus: true, class: "form-control"
+			.field.form-group.row
+				.col-xs-2
+					= f.submit "Edit Email", id: "save-btn", class: "btn"

@@ -1,0 +1,14 @@
+%h2
+	%i{ style: "font-size:20px", class: "fa fa-plus" }
+	= link_to "Create new disease", new_admin_disease_path
+
+%h1 Diseases List
+
+.row
+	.col-xs-6
+		
+		%table.table.table-striped
+			%tbody
+				- @diseases.each do |disease|
+					%tr
+						%td= link_to disease.name, edit_admin_disease_path(disease)

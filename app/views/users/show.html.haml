@@ -1,0 +1,59 @@
+.container-fluid
+	%h2.text-center= "My Profile"
+
+	.text-center= image_tag current_user.image.thumb.url, class: "img-circle" if current_user.image?
+
+	.jumbotron
+		.row
+			.col-xs-2
+			.col-xs-4
+				%strong Full Name
+			.col-xs-4= current_user.full_name
+			.col-xs-2
+		.row
+			.col-xs-2
+			.col-xs-4
+				%strong SSN
+			.col-xs-4= current_user.amka
+			.col-xs-2
+		.row
+			.col-xs-2
+			.col-xs-4
+				%strong Gender
+			.col-xs-4= current_user.gender
+			.col-xs-2
+
+	- if current_user.diseases.present?
+		.text-center
+			.jumbotron.smaller-centered
+				%h3= "My Diseases"
+				%ul
+					- current_user.diseases.each do |disease|
+						%li= disease.name
+
+	- if current_user.parent_diseases.present?
+		.text-center
+			.jumbotron.smaller-centered
+				%h3= "Probably Inherited Diseases"
+				- current_user.disease_probability.each do |disease_probability|
+				
+					- if disease_probability[:probability] < 35
+						- klass = "low"
+					- elsif disease_probability[:probability] >= 35 && disease_probability[:probability] < 75
+						- klass = "medium"
+					- else
+						- klass = "high"
+
+					.row
+						.col-xs-6= disease_probability[:disease]
+						%div{ class: "col-xs-6 #{klass}" }= number_to_percentage(disease_probability[:probability], precision: 1)
+
+	- else
+		%h3.text-center.info If you wish disease inheritance prevision and as long as any of your parents is registered in our app, you can procced to profile edit page and enter their SSN.
+
+
+	- if current_user.suggested_articles.present?
+		%h3.text-center.user-articles Suggested articles
+
+		%ul.article-list
+			= render partial: 'articles/article', collection: current_user.suggested_articles
